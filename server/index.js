@@ -16,7 +16,10 @@ const check = require("./routes/checking");
 
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: [
+      "http://localhost:5173",
+      "https://your-frontend-url.onrender.com"
+    ],
     credentials: true,
   })
 );
