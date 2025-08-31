@@ -1,3 +1,17 @@
+// Connect to MongoDB
+const mongoose = require("mongoose");
+require("dotenv").config();
+
+mongoose
+  .connect(process.env.MONGO_URI, {
+    // useNewUrlParser and useUnifiedTopology are not needed in Mongoose 6+
+  })
+  .then(() => console.log("MongoDB connected"))
+  .catch((err) => {
+    console.error("MongoDB connection error:", err);
+    process.exit(1);
+  });
+
 const express = require("express");
 const Login = require("./models/log");
 const cors = require("cors");
@@ -11,7 +25,6 @@ const viewedRouter = require("./routes/forviewed");
 const logout = require("./routes/logout");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
-require("dotenv").config();
 const check = require("./routes/checking");
 
 app.use(
@@ -75,18 +88,6 @@ app.get("/api/data", (req, res) => {
   };
   res.json(data);
 });
-const mongoose = require("mongoose");
-
-mongoose
-  // .connect("mongodb://127.0.0.1:27017/mydb")
-  .connect(process.env.MONGO_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-
-  .then(() => console.log("MongoDB connected"))
-  .catch((err) => console.log(err));
-
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
