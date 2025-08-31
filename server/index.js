@@ -10,6 +10,8 @@ const loginRouter = require("./routes/login");
 const viewedRouter = require("./routes/forviewed");
 const logout = require("./routes/logout");
 const session = require("express-session");
+const MongoStore = require("connect-mongo");
+require("dotenv").config();
 const check = require("./routes/checking");
 
 app.use(
@@ -21,9 +23,14 @@ app.use(
 app.use(express.json());
 app.use(
   session({
-    secret: "your_secret_key",
+    secret: process.env.SESSION_SECRET || "your_secret_key",
     resave: false,
     saveUninitialized: true,
+    store: MongoStore.create({
+      mongoUrl:
+        process.env.MONGO_URI || "mongodb://localhost:27017/your-db-name",
+      collectionName: "sessions",
+    }),
     cookie: { secure: false }, // set secure: true if using HTTPS
   })
 );
