@@ -15,7 +15,7 @@ const Signup = () => {
 
     if (password === confirmPassword) {
       axios
-        .post("http://localhost:5000/auth/signup", {
+        .post("https://autoschd.onrender.com/auth/signup", {
           username,
           email,
           password,

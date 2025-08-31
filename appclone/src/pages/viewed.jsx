@@ -9,13 +9,13 @@ const Viewed = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/log/check", { withCredentials: true })
+      .get("https://autoschd.onrender.com/log/check", { withCredentials: true })
       .then((res) => {
         if (!res.data.loggedIn) {
           navigate("/login");
         } else {
           axios
-            .get("http://localhost:5000/viewed/viewed")
+            .get("https://autoschd.onrender.com/viewed/viewed")
             .then((response) => {
               setViewedItems(response.data.data || []);
             })
@@ -69,7 +69,9 @@ const Viewed = () => {
                 className="bg-gradient-to-r from-red-400 to-pink-500 text-white px-6 py-2 rounded-full font-semibold shadow hover:from-red-500 hover:to-pink-600 transition mb-2"
                 onClick={() => {
                   axios
-                    .delete(`http://localhost:5000/viewed/viewed/${item._id}`)
+                    .delete(
+                      `https://autoschd.onrender.com/viewed/viewed/${item._id}`
+                    )
                     .then(() => {
                       setViewedItems((prev) =>
                         prev.filter((i) => i._id !== item._id)

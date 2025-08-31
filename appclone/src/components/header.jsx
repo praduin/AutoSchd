@@ -16,7 +16,7 @@ const Header = () => {
   const handleLogout = async () => {
     try {
       await axios.post(
-        "http://localhost:5000/log/logout",
+        "https://autoschd.onrender.com/log/logout",
         {},
         { withCredentials: true }
       );

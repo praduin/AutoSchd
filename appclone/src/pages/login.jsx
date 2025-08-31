@@ -12,7 +12,7 @@ const Login = () => {
 
     axios
       .post(
-        "http://localhost:5000/log/login",
+        "https://autoschd.onrender.com/log/login",
         {
           email,
           password,

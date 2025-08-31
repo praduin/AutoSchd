@@ -10,7 +10,7 @@ const Favorite = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/log/check", { withCredentials: true })
+      .get("https://autoschd.onrender.com/log/check", { withCredentials: true })
       .then((res) => {
         if (!res.data.loggedIn) {
           navigate("/login");
@@ -21,7 +21,7 @@ const Favorite = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:5000/carting/cart", {
+      .post("https://autoschd.onrender.com/carting/cart", {
         title,
         duration,
         time,
