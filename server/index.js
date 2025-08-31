@@ -16,10 +16,7 @@ const check = require("./routes/checking");
 
 app.use(
   cors({
-    origin: [
-      "http://localhost:5173",
-      "https://your-frontend-url.onrender.com"
-    ],
+    origin: ["http://localhost:5173", "https://autoschd-frontend.onrender.com"],
     credentials: true,
   })
 );
@@ -34,7 +31,10 @@ app.use(
         process.env.MONGO_URI || "mongodb://localhost:27017/your-db-name",
       collectionName: "sessions",
     }),
-    cookie: { secure: false }, // set secure: true if using HTTPS
+    cookie: {
+      secure: process.env.NODE_ENV === "production", // true on Render, false locally
+      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+    },
   })
 );
 
