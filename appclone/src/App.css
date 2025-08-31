@@ -1,0 +1,5 @@
+/* Custom beautiful cursor */
+body, html {
+	cursor: url('/assets/react.svg'), auto;
+}
+@import "tailwindcss";
