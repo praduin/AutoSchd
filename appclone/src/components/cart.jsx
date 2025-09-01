@@ -8,7 +8,7 @@ const Cart = () => {
 
   const fetchCartItems = () => {
     axios
-      .get("https://autoschd.onrender.com/carting/cart")
+          .get("https://autoschd.onrender.com/carting/cart", { withCredentials: true })
       .then((response) => {
         setCartItems(response.data.data || []);
       })
@@ -19,7 +19,7 @@ const Cart = () => {
 
   useEffect(() => {
     axios
-      .get("https://autoschd.onrender.com/log/check", { withCredentials: true })
+          .get("https://autoschd.onrender.com/log/check", { withCredentials: true })
       .then((res) => {
         setIsLoggedIn(res.data.loggedIn);
         console.log("cart.jsx server sent successfully", isLoggedIn);
@@ -30,7 +30,7 @@ const Cart = () => {
   const handleRemove = (id) => {
     if (!isLoggedIn) return;
     axios
-      .delete(`https://autoschd.onrender.com/carting/cart/${id}`)
+          .delete(`https://autoschd.onrender.com/carting/cart/${id}`, { withCredentials: true })
       .then(() => {
         setCartItems((prev) => prev.filter((item) => item._id !== id));
         Swal.fire({
@@ -109,12 +109,16 @@ const Cart = () => {
                 onClick={() => {
                   if (!isLoggedIn) return;
                   axios
-                    .post("https://autoschd.onrender.com/viewed/viewed", {
-                      title: item.title,
-                      duration: item.duration,
-                      time: item.time,
-                      expenses: item.expenses,
-                    })
+                    .post(
+                      "https://autoschd.onrender.com/viewed/viewed",
+                      {
+                        title: item.title,
+                        duration: item.duration,
+                        time: item.time,
+                        expenses: item.expenses,
+                      },
+                      { withCredentials: true }
+                    )
                     .then(() => {
                       Swal.fire({
                         title: "Success 🎉",

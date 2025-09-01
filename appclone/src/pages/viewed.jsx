@@ -9,13 +9,13 @@ const Viewed = () => {
 
   useEffect(() => {
     axios
-      .get("https://autoschd.onrender.com/log/check", { withCredentials: true })
+          .get("https://autoschd.onrender.com/log/check", { withCredentials: true })
       .then((res) => {
         if (!res.data.loggedIn) {
           navigate("/login");
         } else {
           axios
-            .get("https://autoschd.onrender.com/viewed/viewed")
+            .get("https://autoschd.onrender.com/viewed/viewed", { withCredentials: true })
             .then((response) => {
               setViewedItems(response.data.data || []);
             })
@@ -70,7 +70,8 @@ const Viewed = () => {
                 onClick={() => {
                   axios
                     .delete(
-                      `https://autoschd.onrender.com/viewed/viewed/${item._id}`
+                      `https://autoschd.onrender.com/viewed/viewed/${item._id}`,
+                      { withCredentials: true }
                     )
                     .then(() => {
                       setViewedItems((prev) =>

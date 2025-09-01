@@ -16,10 +16,10 @@ const Header = () => {
   const handleLogout = async () => {
     try {
       await axios.post(
-        "https://autoschd.onrender.com/log/logout",
-        {},
-        { withCredentials: true }
-      );
+          "https://autoschd.onrender.com/log/logout",
+          {},
+          { withCredentials: true }
+        );
       navigate("/login");
     } catch (err) {
       alert("Logout failed");

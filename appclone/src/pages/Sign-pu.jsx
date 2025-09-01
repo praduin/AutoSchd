@@ -15,29 +15,33 @@ const Signup = () => {
 
     if (password === confirmPassword) {
       axios
-        .post("https://autoschd.onrender.com/auth/signup", {
-          username,
-          email,
-          password,
-        })
-        .then((response) => {
-          console.log("Signup successful:", response.data);
-          Swal.fire({
-            title: "Success 🎉",
-            text: "Signup successful!",
-            icon: "success",
-            confirmButtonText: "Login now",
-          }).then(() => navigate("/login"));
-        })
-        .catch((error) => {
-          console.error("Signup error:", error);
-          Swal.fire({
-            title: "Error",
-            text: "Signup failed. Please try again!",
-            icon: "error",
-            confirmButtonText: "OK",
+          .post(
+            "https://autoschd.onrender.com/auth/signup",
+            {
+              username,
+              email,
+              password,
+            },
+            { withCredentials: true }
+          )
+          .then((response) => {
+            console.log("Signup successful:", response.data);
+            Swal.fire({
+              title: "Success 🎉",
+              text: "Signup successful!",
+              icon: "success",
+              confirmButtonText: "Login now",
+            }).then(() => navigate("/login"));
+          })
+          .catch((error) => {
+            console.error("Signup error:", error);
+            Swal.fire({
+              title: "Error",
+              text: "Signup failed. Please try again!",
+              icon: "error",
+              confirmButtonText: "OK",
+            });
           });
-        });
     } else {
       // Handle password mismatch
       Swal.fire({
