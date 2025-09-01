@@ -29,7 +29,7 @@ const check = require("./routes/checking");
 
 app.use(
   cors({
-    origin: ["http://localhost:5173", "https://autoschd-frontend.onrender.com"],
+    origin: ["http://localhost:5173", "https://auto-ner6.onrender.com"],
     credentials: true,
   })
 );
