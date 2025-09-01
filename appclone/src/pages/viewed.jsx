@@ -9,7 +9,7 @@ const Viewed = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/log/check", { withCredentials: true })
+      .get("https://autoschd.onrender.com/log/check", { withCredentials: true })
       .then((res) => {
         if (!res.data.loggedIn) {
           navigate("/login");

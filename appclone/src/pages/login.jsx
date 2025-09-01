@@ -12,7 +12,7 @@ const Login = () => {
 
     axios
       .post(
-        "https://auto-ner6.onrender.com/log/login",
+        "https://autoschd.onrender.com/log/login",
         {
           email,
           password,
