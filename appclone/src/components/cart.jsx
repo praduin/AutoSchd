@@ -21,7 +21,7 @@ const Cart = () => {
 
   useEffect(() => {
     axios
-      .get("https://autoschd.onrender.com/log/check", { withCredentials: true })
+      .get(`https://autoschd.onrender.com/log/check?t=${Date.now()}`, { withCredentials: true })
       .then((res) => {
         setIsLoggedIn(res.data.loggedIn);
         console.log("cart.jsx server sent successfully", isLoggedIn);

@@ -10,7 +10,7 @@ const Favorite = () => {
 
   useEffect(() => {
     axios
-          .get("https://autoschd.onrender.com/log/check", { withCredentials: true })
+      .get(`https://autoschd.onrender.com/log/check?t=${Date.now()}`, { withCredentials: true })
       .then((res) => {
         if (!res.data.loggedIn) {
           navigate("/login");
