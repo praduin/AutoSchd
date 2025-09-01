@@ -8,7 +8,7 @@ const Cart = () => {
 
   const fetchCartItems = () => {
     axios
-      .get("https://autoschd.onrender.com/carting/cart")
+      .get("http://localhost:5000/carting/cart")
       .then((response) => {
         setCartItems(response.data.data || []);
       })
@@ -19,7 +19,7 @@ const Cart = () => {
 
   useEffect(() => {
     axios
-      .get("https://autoschd.onrender.com/log/check", { withCredentials: true })
+      .get("http://localhost:5000/log/check", { withCredentials: true })
       .then((res) => {
         setIsLoggedIn(res.data.loggedIn);
         console.log("cart.jsx server sent successfully", isLoggedIn);
@@ -30,7 +30,7 @@ const Cart = () => {
   const handleRemove = (id) => {
     if (!isLoggedIn) return;
     axios
-      .delete(`https://autoschd.onrender.com/carting/cart/${id}`)
+      .delete(`http://localhost:5000/carting/cart/${id}`)
       .then(() => {
         setCartItems((prev) => prev.filter((item) => item._id !== id));
         Swal.fire({
@@ -109,7 +109,7 @@ const Cart = () => {
                 onClick={() => {
                   if (!isLoggedIn) return;
                   axios
-                    .post("https://autoschd.onrender.com/viewed/viewed", {
+                    .post("http://localhost:5000/viewed/viewed", {
                       title: item.title,
                       duration: item.duration,
                       time: item.time,

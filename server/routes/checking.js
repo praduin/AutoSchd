@@ -2,6 +2,7 @@ const express = require("express");
 const Router = express.Router();
 
 Router.get("/check", (req, res) => {
+  console.log(req);
   if (req.session && req.session.user) {
     console.log("User is logged in:", req.session.user);
     res.json({ loggedIn: true, user: req.session.user });

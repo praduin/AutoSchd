@@ -1,11 +1,7 @@
 // Connect to MongoDB
-const mongoose = require("mongoose");
 require("dotenv").config();
-
-mongoose
-  .connect(process.env.MONGO_URI, {
-    // useNewUrlParser and useUnifiedTopology are not needed in Mongoose 6+
-  })
+const mongoose = require("mongoose");
+mongoose.connect(process.env.MONGO_URI, {})
   .then(() => console.log("MongoDB connected"))
   .catch((err) => {
     console.error("MongoDB connection error:", err);
@@ -29,7 +25,10 @@ const check = require("./routes/checking");
 
 app.use(
   cors({
-    origin: ["http://localhost:5173", "https://auto-ner6.onrender.com"],
+    origin: [
+      "http://localhost:5173",
+      "https://auto-ner6.onrender.com"
+    ],
     credentials: true,
   })
 );
@@ -47,6 +46,7 @@ app.use(
     cookie: {
       secure: process.env.NODE_ENV === "production", // true on Render, false locally
       sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+      httpOnly: true
     },
   })
 );
